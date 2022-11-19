@@ -2,7 +2,10 @@
 #include "NumClass.h"
 // in stands for input
 int isPrime(int in){
-    for (int i = 2; i < in/2; i++){
+    if(in <= 1){
+        return 0;
+    }
+    for (int i = 2; i < in; i++){
         if(in%i == 0){
             return 0;
         } 
