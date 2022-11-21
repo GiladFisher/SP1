@@ -6,14 +6,11 @@ LOOP=advancedClassificationLoop.o
 REC=advancedClassificationRecursion.o
 FLAGS=-Wall
 
-# mains:
-# 	$(CC) $(FLAGS) -o mains main.c basicClassification.c advancedClassificationRecursion.c -lm
-
-all: mains maindloop maindrec loops recursives recursived loopd
 loops: libclassloops.a
 recursives:libclassrec.a
 recursived: libclassrec.so
 loopd:libclassloops.so
+all: mains maindloop maindrec loops recursives recursived loopd
 
 mains: $(MAIN) libclassrec.a # the main file. using static recursion liabrary
 	$(CC) $(FLAGS) -o mains $(MAIN) libclassrec.a -lm

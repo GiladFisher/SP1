@@ -2,10 +2,6 @@
 #include<math.h>
 #include "NumClass.h"
 int main(){
-    // int in = 0;
-    // scanf("%d", &in);
-    // printf("\n ans %d \n",isPalindrome(in));
-    // return 0;
     int bot = 0;
     int top = 0;
     scanf("%d",&bot);
