@@ -1,7 +1,7 @@
 #include "NumClass.h"
 #include <stdio.h>
 #include <math.h>
-
+int Factorial(int);
 
 int isStrong(int num)
 {
@@ -19,7 +19,7 @@ int isStrong(int num)
 int isPrime(int num)
 {
     int i;
-    for(i=2; i<sqrt(num) ; i++)
+    for(i=2; i<num ; i++)
     {
         if( num%i == 0) { return 0; }
     }
