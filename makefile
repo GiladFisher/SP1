@@ -1,3 +1,4 @@
+# Macros ------------------------------------------------
 CC=gcc # for c
 AR=ar # for static libraries 
 MAIN=main.o
@@ -5,6 +6,7 @@ BASIC=basicClassification.o
 LOOP=advancedClassificationLoop.o
 REC=advancedClassificationRecursion.o
 FLAGS=-Wall
+# End Macros ---------------------------------------------
 
 loops: libclassloops.a
 recursives:libclassrec.a
