@@ -1,33 +1,38 @@
-#include <stdio.h>
 #include "NumClass.h"
-// in stands for input
-int isPrime(int in){
-    if(in <= 1){
-        return 0;
+#include <stdio.h>
+#include <math.h>
+
+
+int isStrong(int num)
+{
+    int temp = num;
+    int sum = 0;
+    while (temp != 0)
+    {
+        sum += Factorial(temp%10);
+        temp /= 10;
     }
-    for (int i = 2; i < in; i++){
-        if(in%i == 0){
-            return 0;
-        } 
+    
+    return (num == sum);
+}
+
+int isPrime(int num)
+{
+    int i;
+    for(i=2; i<sqrt(num) ; i++)
+    {
+        if( num%i == 0) { return 0; }
     }
     return 1;
 }
 
-int isStrong(int in){
-    int temp = in;
-    int sum = 0;
-    int digit;
-    while (temp != 0){
-        digit = temp % 10;
-        temp = (temp - temp % 10)/10;
-        int fac_of_digit = 1;
-        for (int i=1; i <= digit; i++){
-            fac_of_digit *= i;
-        }
-        sum += fac_of_digit;
+int Factorial(int num)
+{
+    int factorial = 1;
+    while (num > 1)
+    {
+        factorial *= num;
+        num--;
     }
-    if(sum == in){
-        return 1;
-    }
-    return 0;
+    return factorial;
 }
