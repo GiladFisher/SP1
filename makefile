@@ -30,10 +30,10 @@ libclassrec.a: $(BASIC) $(REC) # makes the static liabrary for recursion
 	$(AR) -rcs libclassrec.a $(BASIC) $(REC) 
 
 libclassrec.so: $(BASIC) $(REC) # makes the dynamic liabrary for recursion
-	$(CC) -shared -o libclassrec.so $(BASIC) $(REC) 
+	$(CC) -fPIC -shared -o libclassrec.so $(BASIC) $(REC) 
 
 libclassloops.so: $(BASIC) $(LOOP) # makes the dynamic liabrary for loops
-	$(CC) -shared -o libclassloops.so $(BASIC) $(LOOP) 
+	$(CC) -fPIC -shared -o libclassloops.so $(BASIC) $(LOOP) 
 
 $(MAIN): main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c -lm
