@@ -8,9 +8,7 @@ int main()
 
 int x,y;
 
-printf("Enter the 1st number: ");
 scanf("%d", &x);
-printf("Enter the 2nd number: ");
 scanf("%d", &y);
 
 if ( y < x )
@@ -23,7 +21,7 @@ if ( y < x )
 int i;
 
 printf("The Armstrong numbers are: ");
-for(i=x ; i<=y ; i++)
+for(i=x ; i<=y ; i++) 
 {   
     if( isArmstrong(i) )
     {
