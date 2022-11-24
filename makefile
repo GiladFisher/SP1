@@ -36,7 +36,7 @@ libclassloops.so: $(BASIC) $(LOOP) # makes the dynamic liabrary for loops
 	$(CC) -shared -o libclassloops.so $(BASIC) $(LOOP) 
 
 $(MAIN): main.c NumClass.h
-	$(CC) $(FLAGS) -c main.c -lm
+	$(CC) $(FLAGS) -fPIC -c main.c -lm
 
 $(BASIC): basicClassification.c NumClass.h
 	$(CC) $(FLAGS) -fPIC -c basicClassification.c -lm
