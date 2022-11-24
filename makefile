@@ -30,22 +30,22 @@ libclassrec.a: $(BASIC) $(REC) # makes the static liabrary for recursion
 	$(AR) -rcs libclassrec.a $(BASIC) $(REC) 
 
 libclassrec.so: $(BASIC) $(REC) # makes the dynamic liabrary for recursion
-	$(CC) -fPIC -shared -o libclassrec.so $(BASIC) $(REC) 
+	$(CC) -shared -o libclassrec.so $(BASIC) $(REC) 
 
 libclassloops.so: $(BASIC) $(LOOP) # makes the dynamic liabrary for loops
-	$(CC) -fPIC -shared -o libclassloops.so $(BASIC) $(LOOP) 
+	$(CC) -shared -o libclassloops.so $(BASIC) $(LOOP) 
 
 $(MAIN): main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c -lm
 
 $(BASIC): basicClassification.c NumClass.h
-	$(CC) $(FLAGS) -c basicClassification.c -lm
+	$(CC) $(FLAGS) -fPIC -c basicClassification.c -lm
 
 $(LOOP): advancedClassificationLoop.c NumClass.h 
-	$(CC) $(FLAGS) -c advancedClassificationLoop.c -o $(LOOP) -lm 
+	$(CC) $(FLAGS) -fPIC -c advancedClassificationLoop.c -o $(LOOP) -lm 
 
 $(REC): advancedClassificationRecursion.c NumClass.h
-	$(CC) $(FLAGS) -c advancedClassificationRecursion.c -o $(REC) -lm  
+	$(CC) $(FLAGS) -fPIC -c advancedClassificationRecursion.c -o $(REC) -lm  
 
 .PHONY: clean all
 
