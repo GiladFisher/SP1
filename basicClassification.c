@@ -3,6 +3,12 @@
 #include <math.h>
 int Factorial(int);
 
+
+
+
+
+
+
 int isStrong(int num)
 {
     int temp = num;
