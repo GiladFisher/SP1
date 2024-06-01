@@ -1,0 +1,121 @@
+        -:    0:Source:dijks.c
+        -:    0:Graph:dijks.gcno
+        -:    0:Data:dijks.gcda
+        -:    0:Runs:1
+        -:    1:// C program for Dijkstra's single source shortest path
+        -:    2:// algorithm. The program is for adjacency matrix
+        -:    3:// representation of the graph
+        -:    4:
+        -:    5:#include <limits.h>
+        -:    6:#include <stdbool.h>
+        -:    7:#include <stdio.h>
+        -:    8:
+        -:    9:// Number of vertices in the graph
+        -:   10:#define V 4
+        -:   11:
+        -:   12:// A utility function to find the vertex with minimum
+        -:   13:// distance value, from the set of vertices not yet included
+        -:   14:// in shortest path tree
+        3:   15:int minDistance(int dist[], bool sptSet[])
+        -:   16:{
+        -:   17:    // Initialize min value
+        3:   18:    int min = INT_MAX, min_index;
+        -:   19:
+       15:   20:    for (int v = 0; v < V; v++)
+       12:   21:        if (sptSet[v] == false && dist[v] <= min)
+        4:   22:            min = dist[v], min_index = v;
+        -:   23:
+        3:   24:    return min_index;
+        -:   25:}
+        -:   26:
+        -:   27:// A utility function to print the constructed distance
+        -:   28:// array
+        1:   29:void printSolution(int dist[])
+        -:   30:{
+        1:   31:    printf("Vertex \t\t Distance from Source\n");
+        5:   32:    for (int i = 0; i < V; i++)
+        4:   33:        printf("%d \t\t\t\t %d\n", i, dist[i]);
+        1:   34:}
+        -:   35:
+        -:   36:// Function that implements Dijkstra's single source
+        -:   37:// shortest path algorithm for a graph represented using
+        -:   38:// adjacency matrix representation
+        1:   39:void dijkstra(int graph[V][V], int src)
+        -:   40:{
+        -:   41:    int dist[V]; // The output array.  dist[i] will hold the
+        -:   42:                 // shortest
+        -:   43:    // distance from src to i
+        -:   44:
+        -:   45:    bool sptSet[V]; // sptSet[i] will be true if vertex i is
+        -:   46:                    // included in shortest
+        -:   47:    // path tree or shortest distance from src to i is
+        -:   48:    // finalized
+        -:   49:
+        -:   50:    // Initialize all distances as INFINITE and stpSet[] as
+        -:   51:    // false
+        5:   52:    for (int i = 0; i < V; i++)
+        4:   53:        dist[i] = INT_MAX, sptSet[i] = false;
+        -:   54:
+        -:   55:    // Distance of source vertex from itself is always 0
+        1:   56:    dist[src] = 0;
+        -:   57:
+        -:   58:    // Find shortest path for all vertices
+        4:   59:    for (int count = 0; count < V - 1; count++) {
+        -:   60:        // Pick the minimum distance vertex from the set of
+        -:   61:        // vertices not yet processed. u is always equal to
+        -:   62:        // src in the first iteration.
+        3:   63:        int u = minDistance(dist, sptSet);
+        -:   64:
+        -:   65:        // Mark the picked vertex as processed
+        3:   66:        sptSet[u] = true;
+        -:   67:
+        -:   68:        // Update dist value of the adjacent vertices of the
+        -:   69:        // picked vertex.
+       15:   70:        for (int v = 0; v < V; v++)
+        -:   71:
+        -:   72:            // Update dist[v] only if is not in sptSet,
+        -:   73:            // there is an edge from u to v, and total
+        -:   74:            // weight of path from src to  v through u is
+        -:   75:            // smaller than current value of dist[v]
+       12:   76:            if (!sptSet[v] && graph[u][v]
+        3:   77:                && dist[u] != INT_MAX
+        3:   78:                && dist[u] + graph[u][v] < dist[v])
+        3:   79:                dist[v] = dist[u] + graph[u][v];
+        -:   80:    }
+        -:   81:
+        -:   82:    // print the constructed distance array
+        1:   83:    printSolution(dist);
+        1:   84:}
+        -:   85:
+        -:   86:// driver's code
+        1:   87:int main()
+        -:   88:{
+        -:   89:    /* Let us create the example graph discussed above */
+        -:   90:    int graph[V][V];
+        -:   91:
+        5:   92:    for (int i = 0; i < V; i++)
+        -:   93:    {
+       14:   94:        for (int j = i; j < V; j++)
+        -:   95:        {
+        -:   96:            int userInput;
+       10:   97:            printf("Enter the value of graph[%d][%d]: ", i, j);
+       10:   98:            scanf("%d", &userInput);
+       10:   99:            if(userInput < 0) {
+    #####:  100:                printf("Invalid input. Please enter a non-negative integer.\n");
+    #####:  101:                j--;
+        -:  102:            }
+       10:  103:            else if(j == i && userInput != 0) {
+    #####:  104:                printf("Invalid input. values on main diagonal line should be 0\n");
+    #####:  105:                j--;
+        -:  106:            }
+        -:  107:            else {
+       10:  108:                graph[i][j] = userInput;
+       10:  109:                graph[j][i] = userInput;
+        -:  110:            }
+        -:  111:        }
+        -:  112:    }
+        -:  113:    // Function call
+        1:  114:    dijkstra(graph, 0);
+        -:  115:
+        1:  116:    return 0;
+        -:  117:}

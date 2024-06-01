@@ -14,6 +14,9 @@ recursived: libclassrec.so
 loopd:libclassloops.so
 all: mains maindloop maindrec loops recursives recursived loopd
 
+thread: threadplay.c 
+	$(CC) $(FLAGS) -o thread threadplay.c -lpthread
+
 mains: $(MAIN) libclassrec.a # the main file. using static recursion liabrary
 	$(CC) $(FLAGS) -o mains $(MAIN) libclassrec.a -lm
 
